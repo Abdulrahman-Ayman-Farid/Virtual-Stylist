@@ -1,0 +1,6 @@
+{
+  "name": "Virtual Stylist",
+  "description": "AI-powered wardrobe companion that analyzes statement clothing items, extracts color harmony, and generates 3 complete flat-lay outfits with interactive styling edits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
