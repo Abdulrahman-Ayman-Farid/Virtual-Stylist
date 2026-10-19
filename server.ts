@@ -36,6 +36,11 @@ function parseBase64Image(dataString: string): { mimeType: string; data: string 
   return { mimeType: 'image/jpeg', data: dataString };
 }
 
+// Health check endpoint
+app.get('/health', (req: Request, res: Response) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // 1. Analyze garment & generate 3 distinct complete outfits (Casual, Business, Night Out)
 app.post('/api/stylist/analyze-and-outfit', async (req: Request, res: Response): Promise<void> => {
   try {
