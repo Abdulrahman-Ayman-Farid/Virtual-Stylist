@@ -9,3 +9,5 @@ images:
     newTag: prod
 patches:
   - path: deployment-patch.yaml
+  - path: gateway-patch.yaml
+  - path: virtualservice-patch.yaml

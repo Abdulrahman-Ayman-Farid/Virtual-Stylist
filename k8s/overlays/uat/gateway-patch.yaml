@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: virtual-stylist-gateway
+spec:
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - virtual-stylist-uat.com
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - virtual-stylist-uat.com
+      tls:
+        mode: SIMPLE
+        credentialName: virtual-stylist-tls-uat
