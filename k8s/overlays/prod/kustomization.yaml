@@ -3,10 +3,9 @@ kind: Kustomization
 namespace: virtual-stylist-prod
 resources:
   - ../../base
+  - hpa.yaml
 images:
   - name: virtual-stylist
     newTag: prod
 patches:
   - path: deployment-patch.yaml
-  - path: ingress-patch.yaml
-  - path: hpa.yaml

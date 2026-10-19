@@ -6,7 +6,7 @@ metadata:
     app: virtual-stylist
 spec:
   hosts:
-    - "*"
+    - virtual-stylist.com
   http:
     - route:
         - destination:
