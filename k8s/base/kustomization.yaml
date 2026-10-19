@@ -6,3 +6,5 @@ resources:
   - ingress.yaml
   - configmap.yaml
   - secrets.yaml
+  - gateway.yaml
+  - virtualservice.yaml

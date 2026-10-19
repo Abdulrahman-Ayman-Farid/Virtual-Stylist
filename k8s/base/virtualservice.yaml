@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: virtual-stylist-vs
+  labels:
+    app: virtual-stylist
+spec:
+  hosts:
+    - "*"
+  http:
+    - route:
+        - destination:
+            host: virtual-stylist
+            port:
+              number: 80
