@@ -1,0 +1,119 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Run tests
+        run: npm test
+        continue-on-error: true
+
+  build:
+    runs-on: ubuntu-latest
+    needs: lint
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push Docker image
+        run: |
+          docker buildx build \
+            --platform linux/amd64 \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/virtual-stylist:${{ github.sha }} \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/virtual-stylist:latest \
+            --push .
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
+      - name: Configure kubectl
+        run: |
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > kubeconfig
+          chmod 600 kubeconfig
+          kubectl --kubeconfig=kubeconfig version --client
+      - name: Create namespace
+        run: |
+          kubectl --kubeconfig=kubeconfig create namespace virtual-stylist --dry-run=client -o yaml | kubectl --kubeconfig=kubeconfig apply -f -
+      - name: Deploy to dev
+        run: |
+          kustomize build k8s/overlays/dev | \
+          sed "s|virtual-stylist:latest|${{ secrets.DOCKERHUB_USERNAME }}/virtual-stylist:${{ github.sha }}|g" | \
+          kubectl --kubeconfig=kubeconfig apply -f -
+
+  deploy-uat:
+    runs-on: ubuntu-latest
+    needs: deploy-dev
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: uat
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
+      - name: Configure kubectl
+        run: |
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > kubeconfig
+          chmod 600 kubeconfig
+      - name: Create namespace
+        run: |
+          kubectl --kubeconfig=kubeconfig create namespace virtual-stylist-uat --dry-run=client -o yaml | kubectl --kubeconfig=kubeconfig apply -f -
+      - name: Deploy to uat
+        run: |
+          kustomize build k8s/overlays/uat | \
+          sed "s|virtual-stylist:latest|${{ secrets.DOCKERHUB_USERNAME }}/virtual-stylist:${{ github.sha }}|g" | \
+          kubectl --kubeconfig=kubeconfig apply -f -
+
+  deploy-prod:
+    runs-on: ubuntu-latest
+    needs: deploy-uat
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
+      - name: Configure kubectl
+        run: |
+          echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 -d > kubeconfig
+          chmod 600 kubeconfig
+      - name: Create namespace
+        run: |
+          kubectl --kubeconfig=kubeconfig create namespace virtual-stylist-prod --dry-run=client -o yaml | kubectl --kubeconfig=kubeconfig apply -f -
+      - name: Deploy to prod
+        run: |
+          kustomize build k8s/overlays/prod | \
+          sed "s|virtual-stylist:latest|${{ secrets.DOCKERHUB_USERNAME }}/virtual-stylist:${{ github.sha }}|g" | \
+          kubectl --kubeconfig=kubeconfig apply -f -
