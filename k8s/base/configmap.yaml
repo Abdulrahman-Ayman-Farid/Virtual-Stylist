@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: virtual-stylist-config
+data:
+  NODE_ENV: production
+  PORT: "3000"

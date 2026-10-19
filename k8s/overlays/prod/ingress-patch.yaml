@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: virtual-stylist
+spec:
+  rules:
+    - host: virtual-stylist.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: virtual-stylist
+                port:
+                  number: 80

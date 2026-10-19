@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: virtual-stylist-dev
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Abdulrahman-Ayman-Farid/Virtual-Stylist.git
+    path: k8s/overlays/dev
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: virtual-stylist
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
