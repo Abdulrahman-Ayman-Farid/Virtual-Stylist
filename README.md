@@ -177,6 +177,16 @@ Virtual Stylist is grounded in real-world editorial fashion theory:
 
 ---
 
+## 📚 Documentation
+
+Full documentation lives in the [`docs/`](./docs/README.md) directory:
+
+- [Architecture](./docs/architecture.md) — high-level overview, repository layout, data flow, and core domain types
+- [API Reference](./docs/api-reference.md) — endpoint details for the Express server and Vercel serverless functions
+- [Components](./docs/components.md) — React component guide
+- [Deployment](./docs/deployment.md) — deployment guide
+- [Environment Variables](./docs/environment-variables.md) — configuration reference
+
 ## 📄 License
 
 Apache-2.0. Built with Google AI Studio.
