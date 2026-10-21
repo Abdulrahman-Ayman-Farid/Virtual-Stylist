@@ -50,8 +50,8 @@ Curious, experimentation-driven users who treat fashion as a creative practice a
 
 ## Table of Contents
 
-- [Business Case 1 — Decoding a Statement Garment](./01-garment-analysis.md)
-- [Business Case 2 — Occasion-Ready Outfit Generation](./02-outfit-generation.md)
-- [Business Case 3 — Interactive Flat-Lay Editing](./03-flat-lay-editing.md)
-- [Business Case 4 — AI Stylist Chat](./04-stylist-chat.md)
-- [Business Case 5 — Building a Capsule Wardrobe](./05-capsule-wardrobe.md)
+- [Business Case 1 — Decoding a Statement Garment](./garment-analysis.md)
+- [Business Case 2 — Occasion-Ready Outfit Generation](./outfit-generation.md)
+- [Business Case 3 — Interactive Flat-Lay Editing](./flat-lay-studio.md)
+- [Business Case 4 — AI Stylist Chat](./stylist-chat.md)
+- [Business Case 5 — Building a Capsule Wardrobe](./capsule-wardrobe.md)

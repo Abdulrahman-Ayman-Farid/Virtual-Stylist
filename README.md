@@ -186,6 +186,7 @@ Full documentation lives in the [`docs/`](./docs/README.md) directory:
 - [Components](./docs/components.md) — React component guide
 - [Deployment](./docs/deployment.md) — deployment guide
 - [Environment Variables](./docs/environment-variables.md) — configuration reference
+- [Business Cases (End Users)](./docs/business-cases/README.md) — end-user scenario guides for garment analysis, outfit generation, stylist chat, flat-lay studio, and capsule wardrobe
 
 ## 📄 License
 
