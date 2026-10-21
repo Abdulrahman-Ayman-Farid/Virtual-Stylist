@@ -7,8 +7,8 @@ Documentation for Virtual Stylist, an AI-powered wardrobe companion that analyze
 - [Architecture](./architecture.md) — High-level system overview, repository layout, data flow, and core domain types.
 - [API Reference](./api-reference.md) — Endpoint reference for the Express server and Vercel serverless functions. *(Coming soon)*
 - [Components](./components.md) — React component reference for the uploader, analysis card, outfit showcase, chat, and modals. *(Coming soon)*
-- [Deployment](./deployment.md) — Deployment guide for Vercel and self-hosted environments. *(Coming soon)*
-- [Environment Variables](./environment-variables.md) — Configuration variables and setup instructions. *(Coming soon)*
+- [Deployment](./deployment.md) — Deployment guide covering local development, Vercel serverless deployment, and Kubernetes (kustomize + Istio + ArgoCD) with health checks.
+- [Environment Variables](./environment-variables.md) — Reference for GEMINI_API_KEY and APP_URL, with setup instructions for local, Vercel, and Kubernetes environments.
 
 ## Getting Started
 
