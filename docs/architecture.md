@@ -4,6 +4,31 @@
 
 Virtual Stylist is an AI-powered wardrobe companion. The user uploads a garment image; the app analyzes it (colors, silhouette, styling difficulty), generates 3 outfit options (Casual, Business, Night Out) each with a flat-lay image, and offers a multi-turn AI stylist chat.
 
+## Tech Stack
+
+### Frontend
+
+| Layer | Technology | Version | Purpose |
+| --- | --- | --- | --- |
+| UI library | React + React DOM | ^19.0.1 | SPA UI; no router or state library — local React state only |
+| Language | TypeScript | ^7.0.2 | Type-safe application code |
+| Build tool | Vite | ^8.3.0 | Dev server and production bundler |
+| Build plugin | @vitejs/plugin-react | ^6.1.1 | React fast refresh and JSX transform |
+| Styling | Tailwind CSS (via @tailwindcss/vite) | ^4.3.3 | CSS-first configuration in `src/index.css` |
+| Animation | Motion | ^12.23.24 | Animations and transitions |
+| Icons | lucide-react | ^0.546.0 | Icon components |
+
+### Backend
+
+| Layer | Technology | Version | Purpose |
+| --- | --- | --- | --- |
+| Runtime | Node.js (ESM) | — | JavaScript runtime for the server |
+| Web framework | Express | ^4.21.2 | `server.ts` — `/health` and `/api/stylist/*` routes, 50mb JSON body limit, serves `dist/` in production |
+| Dev runner | tsx | ^4.21.0 | Runs `server.ts` for the dev and start scripts |
+| Config | dotenv | ^17.2.3 | Environment variable loading |
+| AI client | @google/genai | ^2.4.0 | Server-side Gemini client — `gemini-3.8-flash` for analysis, `gemini-nano-banana-2.1` / `gemini-3.1-flash-lite-image` for image generation |
+| Hosting | Vercel serverless functions (with `vercel.json`) | — | Serverless deployment of the API in `api/` |
+
 ## Repository Layout
 
 | Path | Description |

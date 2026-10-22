@@ -46,11 +46,29 @@ Virtual Stylist is a luxury fashion curation application built with React, Vite,
 
 ## 🛠️ Tech Stack & Architecture
 
-- **Frontend**: React 19, TypeScript, Tailwind CSS v4, Lucide Icons, Google Fonts (*Playfair Display*, *Cormorant Garamond*, *Plus Jakarta Sans*).
-- **Backend**: Express + Vite middleware proxy (`server.ts`).
-- **AI Integration**: `@google/genai` TypeScript SDK:
-  - `gemini-3.8-flash` for multi-modal fashion analysis and structured JSON outfit curation.
-  - `gemini-nano-banana-2.1` / `gemini-3.1-flash-lite-image` for high-resolution flat-lay image generation and prompt-based image editing.
+### Frontend Stack
+
+| Layer | Technology | Version | Purpose |
+| --- | --- | --- | --- |
+| UI Framework | React (`react` + `react-dom`) | ^19.0.1 | Component-based single-page application |
+| Language | TypeScript | ^7.0.2 | Type checking via `tsc --noEmit` (the `lint` script) |
+| Build Tool | Vite (`@vitejs/plugin-react`) | ^8.3.0 (^6.1.1) | Bundling, dev server, and hot module replacement (HMR) |
+| Styling | Tailwind CSS (via `@tailwindcss/vite`) | ^4.3.3 | CSS-first configuration in `src/index.css` |
+| Animations | Motion | ^12.23.24 | UI animations and transitions |
+| Icons | lucide-react | ^0.546.0 | Icon library |
+| Fonts | Google Fonts | — | *Playfair Display*, *Cormorant Garamond*, *Plus Jakarta Sans* |
+
+### Backend Stack
+
+| Layer | Technology | Version | Purpose |
+| --- | --- | --- | --- |
+| Runtime | Node.js (ESM, `"type": "module"`) | — | JavaScript runtime |
+| Web Framework | Express | ^4.21.2 | `server.ts` — serves `/health` and `/api/stylist/*` routes, JSON body parsing with a 50mb limit, and serves the built frontend in production |
+| Server Runner | tsx | ^4.21.0 | Runs `server.ts` directly in the `dev` and `start` scripts |
+| Config | dotenv | ^17.2.3 | Environment variable loading |
+| AI SDK | `@google/genai` | ^2.4.0 | Server-side Gemini client — `gemini-3.8-flash` for analysis, `gemini-nano-banana-2.1` / `gemini-3.1-flash-lite-image` for image generation |
+| Deployment | Vercel serverless functions (`vercel.json`) | — | Standalone endpoints in `api/`: `analyze-and-outfit.ts`, `generate-flatlay.ts`, `edit-flatlay.ts`, `chat.ts` |
+
 - **Vercel Readiness**: Built-in `vercel.json` and standalone serverless API endpoints in `/api/` for zero-configuration Vercel deployment.
 
 ---
