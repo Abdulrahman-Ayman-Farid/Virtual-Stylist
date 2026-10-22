@@ -17,10 +17,14 @@ import {
   DesignedFlatLay,
 } from './types/stylist';
 import { Sparkles, CheckCircle2, AlertCircle, MessageSquare } from 'lucide-react';
+import Homepage from './pages/Homepage';
 
 const STORAGE_KEY = 'virtual_stylist_saved_capsule';
 
 export default function App() {
+  // View state: homepage vs stylist studio
+  const [view, setView] = useState<'home' | 'studio'>('home');
+
   // Styling preferences
   const [preferences, setPreferences] = useState<StylingPreferences>({
     fit: 'tailored',
@@ -247,6 +251,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#F9F8F6] text-[#1C1917] flex flex-col antialiased">
+      {view === 'home' ? (
+        <main className="flex-1">
+          <Homepage />
+        </main>
+      ) : (
+        <>
       {/* Top Bar with 3-zone contract */}
       <TopBar
         onNewPieceClick={() => {
@@ -327,6 +337,16 @@ export default function App() {
           </div>
         </div>
       </footer>
+        </>
+      )}
+
+      {/* View toggle */}
+      <button
+        onClick={() => setView(view === 'home' ? 'studio' : 'home')}
+        className="fixed bottom-6 left-6 z-40 bg-[#1C1917] hover:bg-[#2E2A27] text-white px-4 py-3 shadow-2xl border border-[#3E3A36] text-xs uppercase tracking-wider font-semibold cursor-pointer transition-all"
+      >
+        {view === 'home' ? 'Open Stylist Studio' : 'Back to Homepage'}
+      </button>
 
       {/* Floating Stylist Consultation Trigger */}
       <button

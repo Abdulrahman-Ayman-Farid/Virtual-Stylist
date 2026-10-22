@@ -1,0 +1,50 @@
+/* Collaborations strip — label plus five publication logos. */
+.collaborations {
+  background: var(--cream);
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.collaborations__label {
+  color: var(--text-dark);
+}
+
+.collaborations__logo {
+  color: #1A1A1A;
+  font-size: 18px;
+}
+
+.collaborations__logo--goop {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.collaborations__logo--glamour {
+  font-family: var(--font-serif);
+  font-stretch: condensed;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.collaborations__logo--popsugar {
+  font-family: var(--font-sans);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.collaborations__logo--forbes {
+  font-family: var(--font-serif);
+  text-transform: none;
+}
+
+.collaborations__logo--elle {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,9 @@
+node_modules
+.git
+.gitignore
+dist
+.env
+.env.example
+*.md
+.aistudio
+metadata.json

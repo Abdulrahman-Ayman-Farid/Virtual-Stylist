@@ -1,0 +1,45 @@
+/*
+ * Homepage design tokens for the homepage redesign.
+ * See docs/homepage-redesign-spec.md for the full specification.
+ */
+:root {
+  --color-page-bg: #E8E2DA;
+  --color-cream: #F7EFE7;
+  --color-dark-text: #1E1A17;
+  --color-body-text: #4A443E;
+  --color-cream-text: #F5EDE4;
+  --color-amber: #C87A1E;
+  --color-hero-overlay: rgba(42, 26, 14, 0.5);
+  --color-mission-bg: #141210;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Poppins', 'Montserrat', sans-serif;
+  --cream: #F5EDE4;
+  --mat: #E8E2DA;
+  --text-dark: #2B2622;
+  --text-muted: #6B6259;
+  --white: #FFFFFF;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.body-copy {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}

@@ -1,0 +1,48 @@
+/* About section — three-column layout on cream background. */
+.about {
+  background: var(--cream);
+  padding: 64px 32px;
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.about__col--candle {
+  width: 15%;
+}
+
+.about__col--candle img {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.about__col--portrait {
+  width: 25%;
+}
+
+.about__col--portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.about__col--copy {
+  width: 45%;
+  text-align: left;
+}
+
+.about__eyebrow {
+  color: var(--text-dark);
+  margin: 0 0 16px;
+}
+
+.about__heading {
+  font-size: 30px;
+  color: var(--text-dark);
+  margin: 0 0 16px;
+}
