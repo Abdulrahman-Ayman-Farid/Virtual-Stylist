@@ -1,0 +1,16 @@
+/*
+ * Homepage design tokens for the homepage redesign.
+ * See docs/homepage-redesign-spec.md for the full specification.
+ */
+:root {
+  --color-page-bg: #E8E2DA;
+  --color-cream: #F7EFE7;
+  --color-dark-text: #1E1A17;
+  --color-body-text: #4A443E;
+  --color-cream-text: #F5EDE4;
+  --color-amber: #C87A1E;
+  --color-hero-overlay: rgba(42, 26, 14, 0.5);
+  --color-mission-bg: #141210;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Poppins', sans-serif;
+}
